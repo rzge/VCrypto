@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 def index(request):
-    return HttpResponse('success')
+    return render(request, 'main/index.html')
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Не найдено(</h1>')
