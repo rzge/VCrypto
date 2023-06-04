@@ -72,3 +72,51 @@ main .feature {
   0% {transform: translateY(-150%);}
   100% {transform: translateY(0);}
 }
+/* ДЛЯ ПОИСКОВОЙ СТРОКИ (хорошо бы здесь подправить стили) */
+
+form {
+    margin-left: 32%;
+    width: 500px;
+    text-align: center;
+}
+
+div ul li {
+    list-style: none;
+    text-decoration: none;
+    display: block;
+    margin-top: 20px;
+    width: 400px;
+    margin: 20px 34%;
+    text-align: left;
+}
+
+
+.alert.alert-success {
+    position: initial;
+}
+
+.alert {
+    --bs-alert-padding-x: 1rem;
+    --bs-alert-padding-y: 1rem;
+    --bs-alert-margin-bottom: 1rem;
+    --bs-alert-color: inherit;
+    --bs-alert-border-color: transparent;
+    --bs-alert-border: 1px solid var(--bs-alert-border-color);
+    --bs-alert-border-radius: 0.375rem;
+    position: relative;
+    padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
+    margin-bottom: var(--bs-alert-margin-bottom);
+    color: var(--bs-alert-color);
+    background-color: var(--bs-alert-bg);
+    border: var(--bs-alert-border);
+    border-radius: var(--bs-alert-border-radius);
+    list-style: none;
+    text-decoration: none;
+    display: block;
+    margin-top: 20px;
+    width: 600px;
+    margin: 20px 34%;
+    text-align: left;
+}
+
+/* ДЛЯ ПОИСКОВОЙ СТРОКИ (хорошо бы здесь подправить стили) */
