@@ -1,0 +1,12 @@
+{% extends 'main/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}О Вас{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1>Информация о Вас</h1>
+        <p>Ваш username: {{ user.username }}</p>
+        <p>Ваш id: {{ user.id }}</p>
+    </div>
+{% endblock %}
