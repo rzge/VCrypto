@@ -1,0 +1,24 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Результат поиска{% endblock %}
+
+{% block content %}
+    <div class="feauture">
+        <form action="{% url 'search_results' %}" method="get">
+            <input type="text" name="query" placeholder="Введите username">
+            <button type="submit">Search</button>
+        </form>
+        <h1>Результат поиска по запросу "{{ query }}"</h1>
+        <ul>
+            {% for result in results %}
+                {% if user.id != result.id %}
+                    <div class="alert alert-success">
+                        <li><p>username пользователя: {{ result.username }}. Его ID: {{ result.id }}</p></li>
+                    </div>
+                {% endif %}
+            {% empty %}
+                <li>No results found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
