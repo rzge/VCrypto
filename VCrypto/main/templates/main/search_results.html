@@ -1,7 +1,7 @@
 {% extends 'main/layout.html' %}
 
 {% block title %}Результат поиска{% endblock %}
-
+{% load extras %}
 {% block content %}
     <div class="feauture">
         <form action="{% url 'search_results' %}" method="get">
@@ -12,8 +12,20 @@
         <ul>
             {% for result in results %}
                 {% if user.id != result.id %}
-                    <div class="alert alert-success">
+                    <div class="alert alert-info">
+                        {% get_friend_requests as friend_requests %}
+                        {% for friend_request in friend_requests %}
+                            <li><p>{{friend_request}}</p></li> {# тот, кому отправили запрос дружбы#}
+                        {% endfor %}
+                        <li><p>{{friend_requests}}</p></li>
+                        {# Снизу основная логика #}
                         <li><p>username пользователя: {{ result.username }}. Его ID: {{ result.id }}</p></li>
+                        {% if result not in user.friends.all and result.id not in friend_requests %}
+                            <a href="{% url 'send_friend_request' result.id %}" class="btn btn-success">добавить</a>
+                        {% endif %}
+                        {% if result not in user.friends.all and result.id in friend_requests %}
+                            <a href="" class="btn btn-warning">отправлено</a>
+                        {% endif %}
                     </div>
                 {% endif %}
             {% empty %}
