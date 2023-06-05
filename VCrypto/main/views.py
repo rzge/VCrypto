@@ -35,6 +35,17 @@ def search_results(request):  # поисковая строка
     print(results)
     return render(request, 'main/search_results.html', {'results': results, 'query': query})
 
+@login_required
+def send_friend_request(request, userID):
+    sender = request.user
+    receiver = models.CustomUser.objects.get(id=userID)
+    friend_request, created = models.FriendRequest.objects.get_or_create(sender=sender, receiver=receiver)
+    if created:
+        return HttpResponse('friend request sent')
+    else:
+        return HttpResponse('friend request was already sent')
 
 def pageNotFound(request, exception):
     return HttpResponseNotFound('<h1>Не найдено(</h1>')
+
+# функции, для отработки логики дружбы
