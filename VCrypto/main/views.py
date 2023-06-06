@@ -46,6 +46,6 @@ def send_friend_request(request, userID):
         return HttpResponse('friend request was already sent')
 
 def pageNotFound(request, exception):
-    return HttpResponseNotFound('<h1>Не найдено(</h1>')
+    return render(request, 'main/404.html')
 
 # функции, для отработки логики дружбы
