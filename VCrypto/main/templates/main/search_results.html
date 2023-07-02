@@ -13,17 +13,17 @@
             {% for result in results %}
                 {% if user.id != result.id %}
                     <div class="alert alert-info">
-                        {% get_friend_requests as friend_requests %}
-                        {% for friend_request in friend_requests %}
-                            <li><p>{{friend_request}}</p></li> {# тот, кому отправили запрос дружбы#}
+                        {% get_friend_requests_receiver as friend_requests_receiver %}
+                        {% for friend_request_receiver in friend_requests_receiver %}
+                            <li><p>{{friend_request_receiver}}</p></li> {# тот, кому отправили запрос дружбы#}
                         {% endfor %}
-                        <li><p>{{friend_requests}}</p></li>
+                        <li><p>{{friend_requests_receiver}}</p></li>
                         {# Снизу основная логика #}
                         <li><p>username пользователя: {{ result.username }}. Его ID: {{ result.id }}</p></li>
-                        {% if result not in user.friends.all and result.id not in friend_requests %}
+                        {% if result not in user.friends.all and result.id not in friend_requests_receiver %}
                             <a href="{% url 'send_friend_request' result.id %}" class="btn btn-success">добавить</a>
                         {% endif %}
-                        {% if result not in user.friends.all and result.id in friend_requests %}
+                        {% if result not in user.friends.all and result.id in friend_requests_receiver %}
                             <a href="{% url 'cancel_friend_request' result.id %}" class="btn btn-warning">отправлено</a>
                         {% endif %}
                     </div>
