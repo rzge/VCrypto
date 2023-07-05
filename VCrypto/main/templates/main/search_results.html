@@ -24,10 +24,10 @@
                         {# Снизу основная логика #}
                         <li><p>username пользователя: {{ result.username }}. Его ID: {{ result.id }}</p></li>
                         {% if result not in user.friends.all and result.id not in list_receivers %}
-                            <a href="{% url 'send_friend_request' result.id %}" class="btn btn-success">добавить</a>
+                            <a href="{% url 'send_friend_request' result.id %}" class="btn btn-success">Добавить</a>
                         {% endif %}
                         {% if result not in user.friends.all and result.id in list_receivers %}
-                            <a href="{% url 'cancel_friend_request' result.id %}" class="btn btn-warning">отправлено</a>
+                            <a href="{% url 'cancel_friend_request' result.id %}" class="btn btn-warning">Отменить запрос</a>
                         {% endif %}
                     </div>
                 {% endif %}
