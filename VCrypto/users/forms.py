@@ -3,10 +3,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django import forms
 
+from validators import btc_address
+
 
 def validate_bitcoin_address(value):
-    # Add your Bitcoin address validation logic here
-    if not value.startswith('1'):
+    if not btc_address(value):
         raise ValidationError('Неправильный адрес кошелька')
 
 
