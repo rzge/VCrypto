@@ -54,6 +54,7 @@ def cancel_friend_request(request, userID):  # отменяет отправле
     canceling = models.FriendRequest.objects.filter(sender=sender, receiver=receiver).delete()[0]
     return redirect('search_results')
 
+
 @login_required
 def decline_friend_request(request, userID):  # отменяет пришедший запрос дружбы
     sender = models.CustomUser.objects.get(id=userID)
@@ -79,6 +80,7 @@ def accept_friend_request(request, userID):  # принимает запрос �
     return redirect('search_results')
 
 
+@login_required
 def unfriend(request, userID):  # удаляем из друзей
     sender = request.user
     receiver = models.CustomUser.objects.get(id=userID)
