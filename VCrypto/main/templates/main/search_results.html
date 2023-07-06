@@ -19,6 +19,7 @@
                         {% senders user_id=user.id as list_senders %}
                         <li><p>{{friend_requests_receiver}}</p></li>
                         <li><p>{{friend_requests_sender}}</p></li>
+                        <li><p>{{user.friends.all}}</p></li>
                         {% if result.id in list_receivers %}
                             <li><p>уаааааааааааа</p></li>
                         {% endif %}
@@ -35,7 +36,10 @@
                         {% endif %}
                         {% if result not in user.friends.all and result.id in list_senders %}
                             <a href="{% url 'decline_friend_request' result.id %}" class="btn btn-warning">Отклонить запрос дружбы</a>
-                            <a href="#" class="btn btn-success">Принять запрос дружбы</a>
+                            <a href="{% url 'accept_friend_request' result.id %}" class="btn btn-success">Принять запрос дружбы</a>
+                        {% endif %}
+                        {% if result in user.friends.all %}
+                            <a href="#" class="btn btn-danger">Удалить из друзей</a>
                         {% endif %}
                     </div>
                 {% endif %}
