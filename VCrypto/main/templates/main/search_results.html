@@ -39,7 +39,7 @@
                             <a href="{% url 'accept_friend_request' result.id %}" class="btn btn-success">Принять запрос дружбы</a>
                         {% endif %}
                         {% if result in user.friends.all %}
-                            <a href="#" class="btn btn-danger">Удалить из друзей</a>
+                            <a href="{% url 'unfriend' result.id %}" class="btn btn-danger">Удалить из друзей</a>
                         {% endif %}
                     </div>
                 {% endif %}
