@@ -73,8 +73,19 @@ def decline_friend_request(request, userID):  # отменяет пришедш�
 
 @login_required
 def accept_friend_request(request, userID):  # принимает запрос дружбы (принимаем в друзья)
-    pass
-
+    sender = models.CustomUser.objects.get(id=userID)
+    receiver = request.user
+    print(sender)
+    print(receiver)
+    # удаляем айдишники из БД
+    deleting_id_from_sender = models.FriendRequest.objects.filter(sender=sender, receiver=receiver) #убираем перекрестный айди
+    deleting_id_from_receiver = models.FriendRequest.objects.filter(sender=receiver, receiver=sender).delete()[0]
+    print(receiver.friends.set([sender.id])) #добавляем по другу с каждой стороны
+    print(sender.friends.set([receiver.id]))
+    if deleting_id_from_sender.delete()[0] != 0:
+        return HttpResponse('Запрос дружбы принят')
+    else:
+        return HttpResponse('Запрос дружбы уже был принят')
 
 def unfriend(reqeust, userID):  # удаляем из друзей
     pass
