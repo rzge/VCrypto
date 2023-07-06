@@ -88,7 +88,10 @@ def unfriend(request, userID):  # удаляем из друзей
     sender.friends.remove(receiver.id)
     return redirect('search_results')
 
-
+@login_required
+def friends(request):
+    friends_list = request.user.friends.all()
+    return render(request, 'main/friends.html', {'friends': friends_list})
 #
 # return redirect('profile', to_user_id)
 
