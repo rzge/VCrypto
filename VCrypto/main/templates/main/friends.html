@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main/layout.html' %}
+{% load crispy_forms_tags %}
 
-</body>
-</html>
+{% block title %}О Вас{% endblock %}
+
+{% block content %}
+    <div class="feature">
+        <h1>Ваши друзья</h1>
+        <div class="alert alert-secondary">
+            {% for friend in friends %}
+                <p>Username: {{ friend.username }}</p>
+                <p>Bitcoin address: {{ friend.bitcoin_address }}</p>
+                <a href="{% url 'unfriend' friend.id %}" class="btn btn-danger">Удалить из друзей</a>
+            {% empty %}
+                <p>Одиночество одиночки...</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

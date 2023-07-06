@@ -16,7 +16,7 @@
         <ul>
             {% if user.is_authenticated %}
             	<a href="{% url 'profile' %}"><li><i class="fa-solid fa-address-card"></i> О Вас</li></a>
-                <a href=""><li><i class="fa-solid fa-user-group"></i>Друзья</li></a>
+                <a href="{% url 'friends' %}"><li><i class="fa-solid fa-user-group"></i>Друзья</li></a>
                 <a href=""><li><i class="fa-solid fa-door-open"></i>Исходящие/Входящие заявки</li></a>
                 <a href="{% url 'search_results' %}"><li><i class="fa-solid fa-magnifying-glass"></i>Поиск друзей</li></a>
           	{% else %}

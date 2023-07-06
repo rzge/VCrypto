@@ -62,6 +62,7 @@ main .feature {
 main .feature h1 {font-size: 50px; color: #000000;}
 main .feature p {max-width: 400px; margin: 20px auto; color: #000000;}
 
+main .friends p {font-size: 50px; color: #ff0000;}
 
 main .feature {
   transform: translateY(-150%);
