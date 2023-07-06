@@ -11,5 +11,6 @@ urlpatterns = [
     path('search_results/', views.search_results, name='search_results'),
     path('search_results/send_friend_request/<int:userID>', views.send_friend_request, name='send_friend_request'),
     path('search_results/cancel_friend_request/<int:userID>', views.cancel_friend_request, name='cancel_friend_request'),
-    path('search_results/decline_friend_request/<int:userID>', views.decline_friend_request, name='decline_friend_request')
+    path('search_results/decline_friend_request/<int:userID>', views.decline_friend_request, name='decline_friend_request'),
+    path('search_results/accept_friend_request/<int:userID>', views.accept_friend_request, name='accept_friend_request')
 ]
