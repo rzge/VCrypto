@@ -34,7 +34,7 @@
                             <a href="{% url 'cancel_friend_request' result.id %}" class="btn btn-warning">Отменить запрос</a>
                         {% endif %}
                         {% if result not in user.friends.all and result.id in list_senders %}
-                            <a href="#" class="btn btn-warning">Отклонить запрос дружбы</a>
+                            <a href="{% url 'decline_friend_request' result.id %}" class="btn btn-warning">Отклонить запрос дружбы</a>
                         {% endif %}
                     </div>
                 {% endif %}

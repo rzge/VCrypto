@@ -61,9 +61,15 @@ def cancel_friend_request(request, userID):  # отменяет отправле
 
 
 @login_required
-def decline_friend_request(reqeust, userID):  # отменяет пришедший запрос дружбы
-    pass
-
+def decline_friend_request(request, userID):  # отменяет пришедший запрос дружбы
+    sender = models.CustomUser.objects.get(id=userID)
+    receiver = request.user
+    print(sender)
+    print(receiver)
+    if models.FriendRequest.objects.filter(sender=sender, receiver=receiver).delete()[0] != 0:
+        return HttpResponse('Запрос дружбы отклонён')
+    else:
+        return HttpResponse('Запрос дружбы уже был отклонён')
 
 @login_required
 def accept_friend_request(request, userID):  # принимает запрос дружбы (принимаем в друзья)
