@@ -40,6 +40,7 @@
                         {% endif %}
                         {% if result in user.friends.all %}
                             <a href="{% url 'unfriend' result.id %}" class="btn btn-danger">Удалить из друзей</a>
+                            <li><p>Bitcoin address: {{ result.bitcoin_address }}</p></li>
                         {% endif %}
                     </div>
                 {% endif %}
