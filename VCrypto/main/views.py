@@ -42,10 +42,7 @@ def send_friend_request(request, userID):
     sender = request.user
     receiver = models.CustomUser.objects.get(id=userID)
     friend_request, created = models.FriendRequest.objects.get_or_create(sender=sender, receiver=receiver)
-    if created:
-        return HttpResponse('Отправлен запрос дружбы')
-    else:
-        return HttpResponse('Запрос дружбы уже был отправлен')
+    return redirect('search_results')
 
 
 @login_required
@@ -54,11 +51,8 @@ def cancel_friend_request(request, userID):  # отменяет отправле
     receiver = models.CustomUser.objects.get(id=userID)
     print(sender)
     print(receiver)
-    if models.FriendRequest.objects.filter(sender=sender, receiver=receiver).delete()[0] != 0:
-        return HttpResponse('Запрос дружбы отменён')
-    else:
-        return HttpResponse('Запрос дружбы уже был отменён')
-
+    canceling = models.FriendRequest.objects.filter(sender=sender, receiver=receiver).delete()[0]
+    return redirect('search_results')
 
 @login_required
 def decline_friend_request(request, userID):  # отменяет пришедший запрос дружбы
@@ -66,10 +60,8 @@ def decline_friend_request(request, userID):  # отменяет пришедш�
     receiver = request.user
     print(sender)
     print(receiver)
-    if models.FriendRequest.objects.filter(sender=sender, receiver=receiver).delete()[0] != 0:
-        return HttpResponse('Запрос дружбы отклонён')
-    else:
-        return HttpResponse('Запрос дружбы уже был отклонён')
+    declining = models.FriendRequest.objects.filter(sender=sender, receiver=receiver).delete()[0] != 0
+    return redirect('search_results')
 
 
 @login_required
@@ -80,14 +72,11 @@ def accept_friend_request(request, userID):  # принимает запрос �
     print(receiver)
     # удаляем айдишники из БД
     deleting_id_from_sender = models.FriendRequest.objects.filter(sender=sender,
-                                                                  receiver=receiver)  # убираем перекрестный айди
+                                                                  receiver=receiver).delete()[0]
     deleting_id_from_receiver = models.FriendRequest.objects.filter(sender=receiver, receiver=sender).delete()[0]
     print(receiver.friends.set([sender.id]))  # добавляем по другу с каждой стороны
     print(sender.friends.set([receiver.id]))
-    if deleting_id_from_sender.delete()[0] != 0:
-        return HttpResponse('Запрос дружбы принят')
-    else:
-        return HttpResponse('Запрос дружбы уже был принят')
+    return redirect('search_results')
 
 
 def unfriend(request, userID):  # удаляем из друзей
