@@ -7,7 +7,7 @@ from .models import CustomUser
 class CustomUserAdmin(UserAdmin):
     add_form = UserRegisterForm
     model = CustomUser
-    list_display = ['email', 'username',]
+    list_display = ['email', 'username', 'bitcoin_address']
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
