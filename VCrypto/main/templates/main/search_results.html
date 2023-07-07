@@ -17,17 +17,9 @@
                         {% get_friend_requests_sender as friend_requests_sender %}
                         {% receivers user_id=user.id as list_receivers %}
                         {% senders user_id=user.id as list_senders %}
-                        <li><p>{{friend_requests_receiver}}</p></li>
-                        <li><p>{{friend_requests_sender}}</p></li>
-                        <li><p>{{user.friends.all}}</p></li>
-                        {% if result.id in list_receivers %}
-                            <li><p>уаааааааааааа</p></li>
-                        {% endif %}
-                        {% if result.id in list_senders %}
-                            <li><p>GGGGGGGGGGGGGGGGG</p></li>
-                        {% endif %}
                         {# Снизу основная логика #}
-                        <li><p>username пользователя: {{ result.username }}. Его ID: {{ result.id }}</p></li>
+                        <li><p>username пользователя: {{ result.username }}</p></li>
+                        <li><p>Его ID: {{ result.id }}</p></li>
                         {% if result not in user.friends.all and result.id not in list_receivers and result.id not in list_senders %}
                             <a href="{% url 'send_friend_request' result.id %}" class="btn btn-success">Отправить запрос дружбы</a>
                         {% endif %}
