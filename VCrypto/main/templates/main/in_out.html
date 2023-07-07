@@ -9,7 +9,6 @@
         {% for incoming in incoming_requests %}
             <div class="alert alert-secondary">
                 <p>Username: {{ incoming.sender.username }}</p>
-                <p>Bitcoin address: {{ incoming.sender.bitcoin_address }}</p>
                 <a href="{% url 'decline_friend_request' incoming.sender.id %}" class="btn btn-warning">Отклонить запрос дружбы</a>
                 <a href="{% url 'accept_friend_request' incoming.sender.id %}" class="btn btn-success">Принять запрос дружбы</a>
             </div>
@@ -17,7 +16,6 @@
         {% for outcoming in outcoming_requests %}
             <div class="alert alert-secondary">
                 <p>Username: {{ outcoming.username }}</p>
-                <p>Bitcoin address: {{ outcoming.bitcoin_address }}</p>
                 <a href="{% url 'cancel_friend_request' outcoming.id %}" class="btn btn-warning">Отменить запрос дружбы</a>
             </div>
         {% endfor %}
