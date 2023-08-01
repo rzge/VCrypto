@@ -27,6 +27,7 @@ def register(request):
 def profile(request):
     return render(request, 'main/about_you.html')  # возможность видеть личную информацию
 
+
 @login_required
 def search_results(request):  # поисковая строка
     query = request.GET.get('query')
@@ -88,19 +89,23 @@ def unfriend(request, userID):  # удаляем из друзей
     sender.friends.remove(receiver.id)
     return redirect('search_results')
 
+
 @login_required
 def friends(request):
     friends_list = request.user.friends.all()
     return render(request, 'main/friends.html', {'friends': friends_list})
 
+
 @login_required
 def in_out(request):
-    incoming_requests = request.user.receiver.all() #входящие заявки
-    outcoming_requests_id = models.FriendRequest.objects.filter(sender=request.user.id).values_list('receiver', flat=True)
-    #id__in - позволяет пройтись по итерируемому объекту
+    incoming_requests = request.user.receiver.all()  # входящие заявки
+    outcoming_requests_id = models.FriendRequest.objects.filter(sender=request.user.id).values_list('receiver',
+                                                                                                    flat=True)
+    # id__in - позволяет пройтись по итерируемому объекту
     outcoming_requests = models.CustomUser.objects.filter(id__in=outcoming_requests_id)
     return render(request, 'main/in_out.html', {'incoming_requests': incoming_requests,
                                                 'outcoming_requests': outcoming_requests})
+
 
 # return redirect('profile', to_user_id)
 
